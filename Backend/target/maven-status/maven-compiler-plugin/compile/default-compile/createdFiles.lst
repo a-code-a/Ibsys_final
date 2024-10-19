@@ -1,0 +1,10 @@
+com\example\supplychainmanagement\service\XmlService.class
+com\example\supplychainmanagement\model\SellDirect.class
+com\example\supplychainmanagement\model\SellWish.class
+com\example\supplychainmanagement\SupplyChainManagementApplication.class
+com\example\supplychainmanagement\controller\SupplyChainController.class
+com\example\supplychainmanagement\model\QualityControl.class
+com\example\supplychainmanagement\model\Production.class
+com\example\supplychainmanagement\model\Input.class
+com\example\supplychainmanagement\model\Order.class
+com\example\supplychainmanagement\model\WorkingTime.class

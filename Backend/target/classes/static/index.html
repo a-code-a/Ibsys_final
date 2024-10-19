@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supply Chain Management Tool</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>Supply Chain Management Tool</h1>
+    
+    <h2>Import XML</h2>
+    <textarea id="xmlInput" rows="10" cols="50"></textarea><br>
+    <button onclick="importXml()">Import XML</button>
+
+    <h2>Export XML</h2>
+    <button onclick="exportXml()">Export XML</button>
+    <pre id="xmlOutput"></pre>
+
+    <h2>Update Sales Planning</h2>
+    <textarea id="salesPlanningInput" rows="5" cols="50"></textarea><br>
+    <button onclick="updateSalesPlanning()">Update Sales Planning</button>
+
+    <h2>Update Direct Sales</h2>
+    <textarea id="directSalesInput" rows="5" cols="50"></textarea><br>
+    <button onclick="updateDirectSales()">Update Direct Sales</button>
+
+    <h2>Update Production Program</h2>
+    <textarea id="productionProgramInput" rows="5" cols="50"></textarea><br>
+    <button onclick="updateProductionProgram()">Update Production Program</button>
+
+    <script>
+        function importXml() {
+            const xmlContent = document.getElementById('xmlInput').value;
+            axios.post('/api/import', xmlContent, {
+                headers: { 'Content-Type': 'text/plain' }
+            })
+            .then(response => alert(response.data))
+            .catch(error => alert('Error: ' + error.response.data));
+        }
+
+        function exportXml() {
+            axios.get('/api/export')
+            .then(response => {
+                document.getElementById('xmlOutput').textContent = response.data;
+            })
+            .catch(error => alert('Error: ' + error.response.data));
+        }
+
+        function updateSalesPlanning() {
+            const salesPlanningData = JSON.parse(document.getElementById('salesPlanningInput').value);
+            axios.post('/api/sales-planning', salesPlanningData)
+            .then(response => alert(response.data))
+            .catch(error => alert('Error: ' + error.response.data));
+        }
+
+        function updateDirectSales() {
+            const directSalesData = JSON.parse(document.getElementById('directSalesInput').value);
+            axios.post('/api/direct-sales', directSalesData)
+            .then(response => alert(response.data))
+            .catch(error => alert('Error: ' + error.response.data));
+        }
+
+        function updateProductionProgram() {
+            const productionProgramData = JSON.parse(document.getElementById('productionProgramInput').value);
+            axios.post('/api/production-program', productionProgramData)
+            .then(response => alert(response.data))
+            .catch(error => alert('Error: ' + error.response.data));
+        }
+    </script>
+</body>
+</html>
